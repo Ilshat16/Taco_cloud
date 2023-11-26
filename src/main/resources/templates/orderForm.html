@@ -13,7 +13,8 @@ xmlns:th="http://www.thymeleaf.org">
 		<a th:href="@{/design}" id="another">Design another taco</a><br/>
 		<ul>
 		<li th:each="taco : ${tacoOrder.tacos}">
-		<span th:text="${taco.name}">taco name</span></li>
+		<a th:href="@{/orders/{name}(name=${taco.getName()})}" 
+		th:text="${taco.name}">taco name</a></li>
 		</ul>
 		<h3>Deliver my taco masterpieces to...</h3>
 		

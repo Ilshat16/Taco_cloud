@@ -1,10 +1,13 @@
 package tacos.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -38,5 +41,12 @@ public class OrderController {
 		orderRepository.save(order);
 		sessionStatus.setComplete();
 		return "redirect:/";
+	}
+	
+	@GetMapping("/{name}")
+	public String showTaco(@PathVariable("name") String name, TacoOrder order, Model model) {
+		model.addAttribute("taco", order.getTacos().stream()
+				.filter(t -> t.getName().equals(name)).toList().get(0));
+		return "showTaco";
 	}
 }

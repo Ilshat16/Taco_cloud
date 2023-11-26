@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p th:text="${taco.name}">VALUE</p>
+	<p>Ingredients:</p>
+	<li th:each="ingredient : ${taco.ingredients}">
+		<span th:text="${ingredient.name}">Value</span>
+	</li>
+</body>
+</html>
